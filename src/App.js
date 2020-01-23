@@ -1,26 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import styled from 'styled-components'
+
+import SideBar from './SideBar'
+import Title from './Title'
+import Rooms from './Rooms'
+
+const App = () => {
+    const [rooms, setRooms] = useState([
+        'Room A',
+        'Room B'
+    ])
+    const [activeRoom, setActiveRoom] = useState([rooms[0]])
+
+    const [users, setUsers] = useState([
+        'まふらー',
+        '他の人'
+    ])
+    const [activeUser, setActiveUser] = useState([users[0]])
+
+    return(
+        <>
+            <Title/>
+            <SideBar rooms={rooms} setActiveRoom={setActiveRoom} users={users} setActiveUser={setActiveUser}/>
+            {rooms.map(rooms => <Rooms roomName={rooms} activeRoom={activeRoom} activeUser={activeUser} />)}
+        </>
+    )
 }
 
-export default App;
+export default App
