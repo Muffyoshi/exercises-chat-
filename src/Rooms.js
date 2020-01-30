@@ -1,38 +1,36 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import styled from 'styled-components'
 
 import Content from './Content';
 import Post from './Post';
 
-const Rooms = ({roomName, activeRoom, activeUser}) => {
+const Rooms = ({activeRoom, activeUser, contentsList, setConstentsList}) => {
+    
+    const addContent = (value, user) => {
+        
+        const newContent = {
+            id: contentsList.length + 1,
+            user: user,
+            content: value,
+            room: activeRoom
+        }
 
-    const [contents, setContets] = useState([])
-    const [postUsers, setPostUsers] = useState([])
-
-    const renderRoom = (roomName == activeRoom) ? 'block' : 'none'
-
-    const addContent = (value) => {
         const newContents = [
-            ...contents,
-            value
+            ...contentsList,
+            newContent
         ]
-        setContets(newContents)
-    }
+        
+        setConstentsList(newContents)
 
-    const addPostUser = (user) => {
-        const newPostUsers = [
-            ...postUsers,
-            user
-        ]
-        setPostUsers(newPostUsers)        
+
     }
 
     return(
-        <Room style = {{display: renderRoom}}>
-            <RoomName>{roomName}</RoomName>
-            {contents.map((contents, index) => <Content content={contents} index={index} postUser={postUsers}></Content>)}
-            <Post addContent={addContent} activeUser={activeUser} addPostUser={addPostUser}/>
+        <Room>
+            <RoomName>{activeRoom}</RoomName>
+            {contentsList.map((contentsList) => <Content contentsList={contentsList} activeRoom={activeRoom}></Content>)}
+            <Post addContent={addContent} activeUser={activeUser}/>
         </Room>
     )
 }

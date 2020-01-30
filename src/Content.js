@@ -2,13 +2,17 @@ import React from 'react'
 
 import styled from 'styled-components'
 
-const Content = ({content, index, postUser}) => {
-    return (
-        <ContentArea>
-            <Img>{postUser[index]}</Img>
-            <Desc>{content}</Desc>
-        </ContentArea>
-    )
+const Content = ({contentsList, activeRoom}) => {
+    if(activeRoom == contentsList.room){
+        return (
+            <ContentArea>
+                <Img>{contentsList.user}</Img>
+                <Desc>{contentsList.content}</Desc>
+            </ContentArea>
+        )
+    }else{
+        return(<></>)
+    }
 }
 
 const ContentArea = styled.div`

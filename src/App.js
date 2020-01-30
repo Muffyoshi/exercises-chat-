@@ -7,6 +7,7 @@ import Title from './Title'
 import Rooms from './Rooms'
 
 const App = () => {
+
     const [rooms, setRooms] = useState([
         'Room A',
         'Room B'
@@ -19,11 +20,24 @@ const App = () => {
     ])
     const [activeUser, setActiveUser] = useState([users[0]])
 
+
+    const [contentsList,setConstentsList] = useState([{
+        id: 1,
+        user:'まふらー',
+        content:'はじめだよ。',
+        room:'Room A'
+    },{
+        id: 2,
+        user:'他の人',
+        content:'はじめだよ。',
+        room:'Room B'
+    }])
+
     return(
         <>
             <Title/>
             <SideBar rooms={rooms} setActiveRoom={setActiveRoom} users={users} setActiveUser={setActiveUser}/>
-            {rooms.map(rooms => <Rooms roomName={rooms} activeRoom={activeRoom} activeUser={activeUser} />)}
+            <Rooms activeRoom={activeRoom} activeUser={activeUser} contentsList={contentsList} setConstentsList={setConstentsList}/>
         </>
     )
 }

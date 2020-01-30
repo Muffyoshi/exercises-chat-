@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 
 import styled from 'styled-components'
 
-const Post = ({addContent, activeUser, addPostUser}) => {
+const Post = ({addContent, activeUser}) => {
     const [value, setValue] = useState('')
 
     const handleSubmit = (e) => {
@@ -13,8 +13,7 @@ const Post = ({addContent, activeUser, addPostUser}) => {
             return
         }
 
-        addContent(value)
-        addPostUser(activeUser)
+        addContent(value, activeUser)
         
         setValue('')
     }
